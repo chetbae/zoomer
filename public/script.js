@@ -6,12 +6,20 @@ const myPeer = new Peer(undefined, {
 })
 const myVideo = document.createElement('video')
 myVideo.muted = true
+var myStream
+// const myStream
 const peers = {}
+const controls = {
+    microphone: true,
+    videocam: true,
+
+}
 
 navigator.mediaDevices.getUserMedia({
     video: true,
     audio: true
 }).then(stream => {
+    myStream = stream
     addVideoStream(myVideo, stream)
 
     myPeer.on('call', call => {
@@ -54,4 +62,34 @@ function addVideoStream(video, stream) {
         video.play() 
     })
     videoGrid.append(video)
+}
+
+// controls
+
+function handleMicrophone() {
+    let node = document.getElementById("mic-button-icon")
+    if (controls.microphone == true) {
+        // mute
+        controls.microphone = false
+        node.innerHTML = "mic_off"
+    }
+    else {
+        //unmute
+        controls.microphone = true
+        node.innerHTML = "mic"
+    }
+}
+
+function handleVideocam() {
+    let node = document.getElementById("cam-button-icon")
+    if (controls.videocam == true) {
+        // mute
+        controls.videocam = false
+        node.innerHTML = "videocam_off"
+    }
+    else {
+        //unmute
+        controls.videocam = true
+        node.innerHTML = "videocam"
+    }
 }

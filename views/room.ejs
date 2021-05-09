@@ -6,16 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
         const ROOM_ID = "<%= roomId %>"
+        const USERNAME = prompt("I am ...", "Jane Doe (she/her)")
     </script>
     <script src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js" defer></script>
     <script src="/socket.io/socket.io.js" defer></script>
     <script src="script.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/styles.css"/>
+    <link rel="icon" href="/assets/favicon.ico">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
     <title>Zoomer</title>
 </head>
 <body>
     <main>
         <div id="video-grid"></div>
+        <div id="controls">
+            <button id="mic-button" title="Mute" onclick=handleMicrophone()>
+                <span id="mic-button-icon" class="material-icons">mic</span>
+            </button>
+            <button id="cam-button" title="Mute" onclick=handleVideocam()>
+                <span id="cam-button-icon" class="material-icons">videocam</span>
+            </button>
+        </div>
     </main>
 </body>
 </html>
