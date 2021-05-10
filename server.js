@@ -3,8 +3,6 @@ const { ExpressPeerServer } = require('peer');
 const app = express()
 const server = require('http').createServer(app)
 const io = require('socket.io')(server)
-// const enforce = require("express-sslify");
-// const cors = require("cors");
 const { v4: uuid } = require('uuid')
 
 const PORT = process.env.PORT || 3000
@@ -12,8 +10,6 @@ const users = {}
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
-// enforce.HTTPS({ trustProtoHeader: true })
-// app.use(cors({ origin: true }));
 
 const peerServer = ExpressPeerServer(server, {
     debug: true,
