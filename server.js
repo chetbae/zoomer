@@ -1,13 +1,21 @@
 const express = require('express')
+const { ExpressPeerServer } = require('peer');
 const app = express()
-const server = require('http').Server(app)
+const server = require('http').createServer(app)
 const io = require('socket.io')(server)
 const { v4: uuid } = require('uuid')
 
+const PORT = process.env.PORT || 5000
 const users = {}
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
+
+const peerServer = ExpressPeerServer(server, {
+    debug: true,
+    port: PORT,
+});
+app.use('/peerjs', peerServer);
 
 app.get('/', (req, res) => {
     res.redirect(`/${uuid()}`)
@@ -45,4 +53,4 @@ io.on('connection', socket => {
     })
 })
 
-server.listen(process.env.PORT || 3000)
+server.listen(PORT, () => console.log(`Listening on ${ PORT }`))
