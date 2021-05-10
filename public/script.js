@@ -7,12 +7,10 @@ const myPeer = new Peer(undefined, {
 const myVideo = document.createElement('video')
 myVideo.muted = true
 var myStream
-// const myStream
 const peers = {}
 const controls = {
     microphone: true,
     videocam: true,
-
 }
 
 navigator.mediaDevices.getUserMedia({
@@ -21,6 +19,7 @@ navigator.mediaDevices.getUserMedia({
 }).then(stream => {
     myStream = stream
     addVideoStream(myVideo, stream)
+    myStream = stream
 
     myPeer.on('call', call => {
         call.answer(stream)
@@ -30,13 +29,13 @@ navigator.mediaDevices.getUserMedia({
         })
     })
 
-    socket.on('user-connected', userId => {
+    socket.on('user-connected', (userId) => {
         connectToNewUser(userId, stream)
     })
 })
 
 myPeer.on('open', id => {
-    socket.emit('join-room', ROOM_ID, id)
+    socket.emit('join-room', ROOM_ID, id, )
 })
 
 socket.on('user-disconnected', userId => {
@@ -61,35 +60,46 @@ function addVideoStream(video, stream) {
     video.addEventListener('loadedmetadata', () => {
         video.play() 
     })
-    videoGrid.append(video)
+    const wrapper = document.createElement("div")
+    wrapper.className = "video-wrapper"
+    wrapper.append(video)
+
+    videoGrid.append(wrapper)
 }
 
 // controls
 
 function handleMicrophone() {
-    let node = document.getElementById("mic-button-icon")
     if (controls.microphone == true) {
         // mute
+        myStream.getAudioTracks()[0].enabled = false
         controls.microphone = false
-        node.innerHTML = "mic_off"
+        document.getElementById("mic-button-icon").innerHTML = "mic_off"
+        document.getElementById("mic-button").title = "Unmute"
+
     }
     else {
         //unmute
+        myStream.getAudioTracks()[0].enabled = true
         controls.microphone = true
-        node.innerHTML = "mic"
+        document.getElementById("mic-button-icon").innerHTML = "mic"
+        document.getElementById("mic-button").title = "Mute"
     }
 }
 
 function handleVideocam() {
-    let node = document.getElementById("cam-button-icon")
     if (controls.videocam == true) {
         // mute
+        myStream.getVideoTracks()[0].enabled = false
         controls.videocam = false
-        node.innerHTML = "videocam_off"
+        document.getElementById("cam-button-icon").innerHTML = "videocam_off"
+        document.getElementById("cam-button").title = "Turn Video On"
     }
     else {
         //unmute
+        myStream.getVideoTracks()[0].enabled = true
         controls.videocam = true
-        node.innerHTML = "videocam"
+        document.getElementById("cam-button-icon").innerHTML = "videocam"
+        document.getElementById("cam-button").title = "Turn Video Off"
     }
 }

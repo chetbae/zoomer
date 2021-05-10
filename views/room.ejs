@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
         const ROOM_ID = "<%= roomId %>"
-        const USERNAME = prompt("I am ...", "Jane Doe (she/her)")
+        // const USERNAME = prompt("I am ...", "Jane Doe (she/her)")
     </script>
     <script src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js" defer></script>
     <script src="/socket.io/socket.io.js" defer></script>
@@ -25,7 +25,7 @@
             <button id="mic-button" title="Mute" onclick=handleMicrophone()>
                 <span id="mic-button-icon" class="material-icons">mic</span>
             </button>
-            <button id="cam-button" title="Mute" onclick=handleVideocam()>
+            <button id="cam-button" title="Turn Video Off" onclick=handleVideocam()>
                 <span id="cam-button-icon" class="material-icons">videocam</span>
             </button>
         </div>

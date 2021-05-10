@@ -10,19 +10,31 @@ main {
 }
 
 #video-grid {
-    flex: 10;
     display: flex;
+    align-content: center;
     justify-content: center;
-    align-items: center;
+    margin:auto;
     flex-wrap: wrap;
+    max-width: fit-content;
+}
+
+.video-wrapper {
+    position: relative;
+    margin: 15px;
 }
 
 video {
-    width: 20%;
-    min-width: 150px;
-    margin: 15px;
     transform: rotateY(180deg);
-    border: 0.2rem dashed #7fa1c3;
+    border: 3px dashed #7fa1c3;
+    width: 20vw;
+    min-width: 150px;
+}
+
+.label {
+    position:absolute;
+    right: 3px;
+    bottom: 6px;
+    font-size: small;
 }
 
 #controls {
