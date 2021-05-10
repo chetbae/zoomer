@@ -3,7 +3,9 @@
 
 ## Architecture
 This project was built from scratch with npm init. 
+
 Stack: Javascript, Express, Node.js.
+
 Technologies: socket.io, ejs, WebRTC
 
 ## Hosting
