@@ -30,13 +30,6 @@ video {
     min-width: 150px;
 }
 
-.label {
-    position:absolute;
-    right: 3px;
-    bottom: 6px;
-    font-size: small;
-}
-
 #controls {
     position: fixed;
     bottom: 0;
