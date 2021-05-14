@@ -1,9 +1,7 @@
 # ZOOMER  📹
 ![zoomer](https://user-images.githubusercontent.com/48145854/117729109-3dd1ad00-b19f-11eb-992f-0bb5c7548ba9.png)
-
-## Architecture 
-This project was built from scratch with npm init. 
-
+https://zoomer-chetbae.herokuapp.com/
+## Architecture
 Stack: Javascript, Express, Node.js.
 
 Technologies: WebRTC, socket.io, ejs, peerJS
