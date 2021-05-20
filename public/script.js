@@ -3,10 +3,11 @@ const myPeer = new Peer(undefined, {
     host: location.hostname,
     port: location.port,
     path: '/peerjs'
-  });
+});
 
-console.log(location.hostname, location.port)
+// console.log(location.hostname, location.port)
 
+//establishing base settings
 const videoGrid = document.getElementById('video-grid')
 const myVideo = document.createElement('video')
 myVideo.muted = true
@@ -17,6 +18,7 @@ const controls = {
     videocam: true,
 }
 
+// request stream
 navigator.mediaDevices.getUserMedia({
     video: true,
     audio: true
@@ -24,6 +26,7 @@ navigator.mediaDevices.getUserMedia({
     myStream = stream
     addVideoStream(myVideo, stream)
 
+    // peer proxy to server
     myPeer.on('call', call => {
         call.answer(stream)
         const video = document.createElement('video')
@@ -71,7 +74,6 @@ function addVideoStream(video, stream) {
 }
 
 // controls
-
 function handleMicrophone() {
     if (controls.microphone == true) {
         // mute
